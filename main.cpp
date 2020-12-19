@@ -1,7 +1,10 @@
+#include <vector>
 #include <iostream> 
 #include <string>
 
 //asks user if they want to encrypt a message or decrypt a message
+std::string alphabet = "abcdefghijklmnopqrstuvwxyz";
+
 int getUserChoice() {
 	int input;
 	std::string rawInput;
@@ -25,8 +28,24 @@ int getUserChoice() {
 
 //encrypt word
 std::string encryptedWord(std::string input) {
-	std::string word = input;	
-	return "hello";
+	std::vector<char> word(input.begin(), input.end());
+	/*
+	   for every letter in the string
+			find letter location in alphabet
+				set letter equal to (letterpos + 5 mod 26)
+
+	   */
+
+	for (int i = 0; i < (int)input.size(); i++) {
+		for (int j = 0; j < (int) alphabet.size(); j++) {
+			if (word[i] == alphabet[j]) {
+				word[i] = alphabet[(j+3) % 26];
+			}
+			continue;
+		}
+	}
+	std::string str(word.begin(), word.end());
+	return str;
 }
 
 //displays user input and encryption output
@@ -34,7 +53,7 @@ void encryptPrompt() {
 	std::string input;
 	std::cout<<"enter in the string you would like to encrypt: ";
 	std::cin>>input;
-	std::cout<<"Encrypted version: "<<encryptedWord(input);	
+	std::cout<<"Encrypted version: "<<encryptedWord(input);
 }
 
 void decryptPrompt() {
