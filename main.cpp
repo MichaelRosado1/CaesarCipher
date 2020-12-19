@@ -36,12 +36,17 @@ std::string encryptedWord(std::string input) {
 
 	   */
 
-	for (int i = 0; i < (int)input.size(); i++) {
-		for (int j = 0; j < (int) alphabet.size(); j++) {
+	for (int i = 0; i < (int) input.length();i++) {
+		for (int j = 0; j < (int) alphabet.length();j++) {
 			if (word[i] == alphabet[j]) {
+				std::cout<<"word[i]: "<<word[i]<<" alphabet[j]: "<<alphabet[j]<<std::endl;
+
 				word[i] = alphabet[(j+3) % 26];
+
+				std::cout<<"new word[i]: "<<word[i]<<std::endl;
+
+				break;
 			}
-			continue;
 		}
 	}
 	std::string str(word.begin(), word.end());
