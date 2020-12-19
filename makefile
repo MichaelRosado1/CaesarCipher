@@ -1,2 +1,2 @@
 out: main.cpp
-	g++ main.cpp -o out -Wal -Wextra -pedantic
+	g++ main.cpp -o out -Wall -Wextra -pedantic
