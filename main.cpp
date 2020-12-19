@@ -20,10 +20,8 @@ int getUserChoice() {
 			std::cout<<"Enter in a valid choice\n";
 			getUserChoice();
 		}
-	} else {
-		return input;
 	}
-	return -1;
+	return input;
 }
 
 //encrypt word
@@ -39,11 +37,7 @@ std::string encryptedWord(std::string input) {
 	for (int i = 0; i < (int) input.length();i++) {
 		for (int j = 0; j < (int) alphabet.length();j++) {
 			if (word[i] == alphabet[j]) {
-				std::cout<<"word[i]: "<<word[i]<<" alphabet[j]: "<<alphabet[j]<<std::endl;
-
 				word[i] = alphabet[(j+3) % 26];
-
-				std::cout<<"new word[i]: "<<word[i]<<std::endl;
 
 				break;
 			}
@@ -61,8 +55,28 @@ void encryptPrompt() {
 	std::cout<<"Encrypted version: "<<encryptedWord(input);
 }
 
+std::string decryptedWord(std::string input) {
+	std::vector<char> word(input.begin(), input.end());
+
+	for (int i = 0; i < (int) input.length(); i++) {
+		for (int j = 0; j < (int) alphabet.length(); j++) {
+			if (word[i] == alphabet[j]) {
+				word[i] = alphabet[(j-3) % 26];
+				break;
+			}
+		}
+	}
+	std::string str(word.begin(), word.end());
+	return str;
+}
 void decryptPrompt() {
 	//Need to implement
+	std::string input;
+	std::cout<<"enter in the string you would like to decrypt: ";
+	std::cin>>input;
+	std::cout<<"decrypted version: "<<decryptedWord(input);
+
+
 }
 
 int main(){ 
